@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Developers</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+
+      background: #000; /* Changed to black */
+      color: #fff;      /* Changed to white for contrast */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .header {
+      background: #111; /* Darker header */
+      box-shadow: 0 10px 15px rgba(0,0,0,0.10);
+      padding: 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: #4F46E5;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header .logo-icon span {
+      display: block;
+      width: 16px;
+      height: 18px;
+      background: #fff;
+      border-radius: 2px;
+    }
+    .header .title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff; /* White text */
+    }
+    .header .subtitle {
+      font-size: 14px;
+      color: #bbb; /* Lighter gray */
+    }
+    .nav {
+      display: flex;
+      gap: 32px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #bbb; /* Lighter gray */
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav a.active {
+      color: #4F46E5;
+    }
+    .hero {
+      background: linear-gradient(45deg, #232526 0%, #000 100%); /* Dark gradient */
+      color: #ffffff;
+      text-align: center;
+      padding: 80px 20px 40px 20px;
+      position: relative;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #00C7E6;
+      font-family: poppins, sans-serif  ;
+    }
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 32px;
+    }
+    .hero .badges {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .hero .badge {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      display: inline-block;
+    }
+    .team-section {
+      background: #111; /* Dark background */
+      padding: 60px 0;
+    }
+    .team-section .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .team-section .section-desc {
+      font-size: 20px;
+      color: #bbb;
+      text-align: center;
+      margin-bottom: 48px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .team-grid {
+        margin: 50px;
+
+      display: grid;
+      flex-wrap: wrap;
+      gap: 250px;
+      justify-content: center;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    }
+    .team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Perfect text alignment */
+}
+
+  
+    .team-card img {
+      width: 156px;
+      height: 156px;
+      border-radius: 50%;
+      border: 4px solid #00C7E6;
+      object-fit: cover;
+       object-position: center 10%;
+      margin-bottom: 36px;
+   
+    }
+    .team-card .name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .team-card .role {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .team-card .desc {
+      font-size: 14px;
+      color: #bbb;
+      text-align: center;
+      margin-bottom: 16px;
+      min-height: 40px;
+    }
+    .team-card .skills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+         margin-top: -30px;
+    }
+    .team-card .skill {
+      background: #333;
+      color: #fff;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 12px;
+
+
+    }
+
+  @media (max-width: 1000px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 700px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  </style>
+</head>
+<body>
+  
+
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Meet Our Team</h1>
+      <p>The brilliant minds behind the College Lab Experiment Exam Portal</p>
+      <div class="badges">
+        <!-- <span class="badge">Project Duration: 6 Months</span> -->
+        <span class="badge">Team Size: 12 Members</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+
+      <div class="team-grid">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <img src="images/profile1.jpg" alt="Alex Johnson" style="border-color:#00C7E6;">
+          <div class="name">Ch . Karunakar</div>
+          <div class="role" ></div>
+          <div class="desc">
+           
+          </div>
+          <div class="skills">
+         
+          </div>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <img src="images/profile2.jpg" alt="Sarah Chen" style="border-color:#00C7E6;">
+          <div class="name">K . Durga Siva</div>
+          <div class="role" ></div>
+          <div class="desc">
+           
+          </div>
+          <div class="skills">
+           
+             
+          </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <img src="images/profile3.jpg" alt="Michael Rodriguez" style="border-color:#00C7E6">
+          <div class="name">A . satyanarayana</div>
+          <div class="role" ></div>
+          <div class="desc">
+           
+          </div>
+          <div class="skills">
+           
+          
+          </div>
+        </div>
+        <!-- Team Member 4 -->
+        <div class="team-card">
+          <img src="https://placehold.co/96x96" alt="Emily Davis" style="border-color:#00C7E6">
+          <div class="name">B .  Hemanth</div>
+          <div class="role" ></div>
+          <div class="desc">
+           
+          </div>
+          <div class="skills">
+          
+          </div>
+        </div>
+        <!-- Team Member 5 -->
+        <div class="team-card">
+          <img src="" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">B . Navadeep</div>
+          <div class="role" ></div>
+          <div class="desc">
+           
+          </div>
+          <div class="skills">
+           
+          </div>
+        </div>
+        <!-- Team Member 6 -->
+        <div class="team-card">
+          <img src="images/profile4.png" alt="Lisa Thompson" style="border-color:#00C7E6">
+          <div class="name">G . Rama Manikanta</div>
+          <div class="role" ></div>
+          <div class="desc">
+       
+          </div>
+          <div class="skills">
+            
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="images/profile5.png" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">M . Lakshmi</div>
+          <div class="role" ></div>
+          <div class="desc">
+          
+          </div>
+          <div class="skills">
+           
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="images/profile6.png" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">P . Vasavi</div>
+          <div class="role" ></div>
+          <div class="desc">
+        
+          </div>
+          <div class="skills">
+         
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="images/profile10.jpg" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">M . Sneha Latha Reddy</div>
+          <div class="role" ></div>
+          <div class="desc">
+    
+          </div>
+          <div class="skills">
+           
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="images/profile8.png" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">K . Anya Sree</div>
+          <div class="role" ></div>
+          <div class="desc">
+     
+          </div>
+          <div class="skills">
+            
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="https://placehold.co/96x96" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">Sravani</div>
+          <div class="role" ></div>
+          <div class="desc">
+        
+          </div>
+          <div class="skills">
+           
+          </div>
+        </div>
+         <div class="team-card">
+          <img src="https://placehold.co/96x96" alt="David Kim" style="border-color:#00C7E6">
+          <div class="name">Jhansi Lakshmi</div>
+          <div class="role" ></div>
+          <div class="desc">
+    
+          </div>
+          <div class="skills">
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</body>
+</html>

@@ -1,0 +1,514 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experiment 4:COMPOUND SCREW JACK APPARATUS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/experiments.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Main Form -->
+   <form id="exp4-form" method="post" onsubmit="event.preventDefault(); submitExperiment();" class="form-section">
+      <!-- Experiment Header -->
+      <div class="exp-header">
+        <div style="display:flex;flex-direction:column;">
+          <label for="experiment_id">Experiment No.</label>
+          <input type="text" id="experiment_id" name="experiment_id" placeholder="Exp. No" />
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <label for="expDate">Date</label>
+          <input type="date" id="expDate" name="expDate" />
+        </div>
+      </div>
+
+      <h2 style="font-size: 24px;">COMPOUND SCREW JACK APPARATUS</h2>
+
+      <label for="aim">Aim:</label>
+      <textarea id="aim" name="aim" rows="3" placeholder="Enter experiment aim"></textarea>
+
+      <label>Apparatus: (Drag and Drop)</label>
+      <div id="apparatus-dropbox" class="apparatus-dropbox" aria-label="Apparatus dropbox">
+        <small id="apparatus-placeholder" style="color:#777;">Drag apparatus here</small>
+      </div>
+      <input type="hidden" id="apparatus_list" name="apparatus_list" value="">
+
+      
+      <label for="Procedure">Procedure:</label>
+      <textarea id="Procedure" name="Procedure" rows="4" placeholder="Enter Procedure"></textarea>
+
+
+      <h3>Observation Table:</h3>
+      <table>
+        <tr>
+          <th>S.No</th>
+          <th>Load (kg)</th>
+          <th>Effort(gms)</th>
+          <th>Distance measured by load(cm)</th>
+          <th>Distance measured by effort(cm)</th>
+          <th>MA</th>
+          <th>VR</th>
+          <th>Efficiency</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td><input type="text" name="m1" /></td>
+          <td><input type="text" name="d1" /></td>
+          <td><input type="text" name="k1" /></td>
+          <td><input type="text" name="t1" /></td>
+          <td><input type="text" name="f_theo1" /></td>
+          <td><input type="text" name="f_act1" /></td>
+          <td><input type="text" name="f_act1" /></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="text" name="m2" /></td>
+          <td><input type="text" name="d2" /></td>
+          <td><input type="text" name="k2" /></td>
+          <td><input type="text" name="t2" /></td>
+          <td><input type="text" name="f_theo2" /></td>
+          <td><input type="text" name="f_act2" /></td>
+          <td><input type="text" name="f_act2" /></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><input type="text" name="m3" /></td>
+          <td><input type="text" name="d3" /></td>
+          <td><input type="text" name="k3" /></td>
+          <td><input type="text" name="t3" /></td>
+          <td><input type="text" name="f_theo3" /></td>
+          <td><input type="text" name="f_act3" /></td>
+          <td><input type="text" name="f_act3" /></td>
+        </tr>
+      </table>
+
+     <div style="font-family:Arial, sans-serif; border:1px solid #333; padding:15px; width:90%; margin:10px auto; background:#f9f9f9; border-radius:6px;">
+  <h3 style="text-align:left; margin:0; color:#222;">Formulas:</h3>  
+  <h4 style="text-align: left;"> Mechanical advantage = W/p </h4>
+  <h4 style="text-align: left;"> Velocity ratio = π(D + d)N / D </h4>
+  <h4 style="text-align: left;"> Mechanical efficiency = MA/VR (or) W * p / Ph (D + d)N </h4> 
+  <h3>Calculations</h3>   
+  <textarea id="calculations" name="calculations" rows="4" placeholder="Enter calculations here..."></textarea>
+</div>
+
+      <h3>Precautions:</h3>
+      <textarea id="Precautions" name="Precautions" rows="4" placeholder="Enter step-by-step Precautions"></textarea>
+
+
+      <h3>Result:</h3>
+      <textarea id="result" name="result" rows="3" placeholder="Final result of natural frequency"></textarea>
+
+     <div class="btn-group">
+    <div class="back-btn" 
+      onclick="history.back()" 
+      style="cursor:pointer; background:#1a347a; color:#fff; font-weight:600; padding:8px 16px; border-radius:6px; width: fit-content;">
+      Back to experiments
+    </div>
+    
+       <button type="button" onclick="previewExp()" style="cursor:pointer; background:#007bff; color:#fff; font-weight:600; padding:8px 16px; border-radius:6px; width: fit-content;">Preview </button>
+       <button type="button" onclick="submitExperiment()" style="cursor:pointer; background:#1a347a; color:#fff; font-weight:600; padding:8px 16px; border-radius:6px; width: fit-content;">Submit</button>
+      </div>
+    </form>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="apparatus-box">
+        <h3 style="font-size:22px;margin-bottom:12px;text-align:center;">Select Apparatus </h3>
+        <div class="apparatus-list">
+          <button type="button" class="apparatus-btn">Slotted weights</button>
+          <button type="button" class="apparatus-btn">Rope/Nylon string</button>
+          <button type="button" class="apparatus-btn">External accuracy:Vernier Caliper/ruler</button>
+          <button type="button" class="apparatus-btn">Stopwatch</button>
+          <button type="button" class="apparatus-btn">Retort Stand</button>
+        </div>
+      </div>
+
+      <div class="calculator-box">
+        <h3 style="font-size:22px;margin-bottom:16px;">Calculator</h3>
+        <input type="text" id="calc-display" readonly />
+        <div class="calc-buttons">
+          <button class="calc-btn calc-red" onclick="clearCalc()">C</button>
+          <button class="calc-btn" onclick="press('+')">+</button>
+          <button class="calc-btn" onclick="press('*')">×</button>
+          <button class="calc-btn" onclick="press('/')">÷</button>
+          <button class="calc-btn" onclick="press('7')">7</button>
+          <button class="calc-btn" onclick="press('8')">8</button>
+          <button class="calc-btn" onclick="press('9')">9</button>
+          <button class="calc-btn" onclick="press('-')">−</button>
+          <button class="calc-btn" onclick="press('4')">4</button>
+          <button class="calc-btn" onclick="press('5')">5</button>
+          <button class="calc-btn" onclick="press('6')">6</button>
+          <button class="calc-btn calc-equal" onclick="calculate()">=</button>
+          <button class="calc-btn" onclick="press('1')">1</button>
+          <button class="calc-btn" onclick="press('2')">2</button>
+          <button class="calc-btn" onclick="press('3')">3</button>
+          <button class="calc-btn" onclick="press('0')">0</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  
+  <script>
+    // ---------- Calculator ----------
+function press(value) {
+    const display = document.getElementById('calc-display');
+    display.value += value;
+}
+
+function clearCalc() {
+    document.getElementById('calc-display').value = "";
+}
+
+function calculate() {
+    const display = document.getElementById('calc-display');
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = "Error";
+    }
+}
+
+// ---------- Drag & Drop ----------
+document.addEventListener('DOMContentLoaded', () => {
+    const tools = document.querySelectorAll('.apparatus-btn');
+    tools.forEach(tool => {
+        tool.setAttribute('draggable', 'true');
+        
+        tool.addEventListener('dragstart', (e) => {
+            const name = tool.textContent.trim();
+            e.dataTransfer.setData('text/plain', name);
+            e.dataTransfer.effectAllowed = 'copy';
+        });
+
+        tool.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                addApparatusToDropbox(tool.textContent.trim());
+            }
+        });
+    });
+
+    const dropZone = document.getElementById('apparatus-dropbox');
+    dropZone.addEventListener('dragover', (e) => { 
+        e.preventDefault(); 
+        e.dataTransfer.dropEffect = 'copy'; 
+        dropZone.style.borderColor = '#3460d1';
+        dropZone.style.backgroundColor = '#e8edff';
+    });
+    
+    dropZone.addEventListener('dragenter', (e) => { 
+        e.preventDefault(); 
+        dropZone.style.borderColor = '#3460d1';
+        dropZone.style.backgroundColor = '#e8edff';
+    });
+    
+    dropZone.addEventListener('dragleave', (e) => { 
+        dropZone.style.borderColor = '#ccd6ec';
+        dropZone.style.backgroundColor = '#f8fafd';
+    });
+    
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = '#ccd6ec';
+        dropZone.style.backgroundColor = '#f8fafd';
+        const data = e.dataTransfer.getData('text/plain');
+        if (!data) return;
+        addApparatusToDropbox(data);
+    });
+
+    function addApparatusToDropbox(name) {
+        const placeholder = document.getElementById('apparatus-placeholder');
+        if (placeholder) placeholder.style.display = 'none';
+        const dropZone = document.getElementById('apparatus-dropbox');
+        const item = document.createElement('div');
+        item.className = 'tool-item';
+        item.textContent = name;
+        item.title = 'Click to remove';
+        item.setAttribute('role','button');
+        item.setAttribute('tabindex','0');
+        item.setAttribute('draggable', 'false');
+
+        item.addEventListener('click', () => {
+            item.remove();
+            if (dropZone.children.length === 0 && placeholder) {
+                placeholder.style.display = 'inline';
+            }
+        });
+        
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.remove();
+                if (dropZone.children.length === 0 && placeholder) {
+                    placeholder.style.display = 'inline';
+                }
+            }
+        });
+
+        dropZone.appendChild(item);
+    }
+});
+
+// Prevent form submission on Enter key except for textareas
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('exp4-form');
+    
+    form.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            if (e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                return false;
+            }
+        }
+    });
+    
+    // Update form to use JavaScript submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitExperiment();
+    });
+});
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function formatTextWithBreaks(text) {
+    if (!text) return '';
+    const escaped = escapeHtml(text);
+    return escaped.replace(/\n/g, '<br>');
+}
+
+// ---------- Preview ----------
+function previewExp() {
+    const form = document.getElementById('exp4-form');
+    const apparatusList = Array.from(document.querySelectorAll("#apparatus-dropbox .tool-item"))
+        .map(el => el.textContent.trim());
+
+    const previewHtml = `
+<style>
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #000000;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    table, th, td {
+        border: 1px solid #000;
+    }
+    th, td {
+        padding: 8px 10px;
+        text-align: center;
+    }
+</style>
+<div class="header-row">
+    <div><b>Experiment No.:</b> ${escapeHtml(form.experiment_id.value || '')}</div>
+    <div><b>Date:</b> ${escapeHtml(form.expDate.value || '')}</div>
+</div>
+<h2 style="text-align:center; margin-top: 0;">COMPOUND SCREW JACK APPARATUS</h2>
+
+<p><b>Aim:</b> ${formatTextWithBreaks(form.aim.value || '')}</p>
+<p><b>Apparatus Used:</b> ${apparatusList.length ? escapeHtml(apparatusList.join(", ")) : '—'}</p>
+
+<h3>Procedure:</h3>
+<p>${formatTextWithBreaks(form.Procedure.value || '')}</p>
+
+<h3>Observation Table:</h3>
+<table border="1" cellspacing="0" cellpadding="5" style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Load (kg)</th>
+            <th>Effort (gms)</th>
+            <th>Distance measured by load (cm)</th>
+            <th>Distance measured by effort (cm)</th>
+            <th>MA</th>
+            <th>VR</th>
+            <th>Efficiency</th>
+        </tr>
+    </thead>
+    <tbody>
+        ${Array.from({length: 3}, (_, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${escapeHtml(form[`m${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`d${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`k${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`t${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_theo${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_act${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_act${i + 1}`]?.value || '')}</td>
+        </tr>
+        `).join('')}
+    </tbody>
+</table><br>
+<div style="font-family:Arial, sans-serif;   text-align: left;">
+     <h3 style="margin:0; color:#222;">Formulas:</h3>  
+        <p> Mechanical advantage = W/p </p>
+        <p> Velocity ratio = π(D + d)N / D </p>
+        <p> Mechanical efficiency = MA/VR (or) W * p / Ph (D + d)N </p> 
+
+<h3>Calculations:</h3>
+<p>${formatTextWithBreaks(form.calculations?.value || '')}</p>
+</div>
+
+<h3>Precautions:</h3>
+<p>${formatTextWithBreaks(form.Precautions.value || '')}</p>
+
+<h3>Result:</h3>
+<p>${formatTextWithBreaks(form.result.value || '')}</p>`;
+
+    const win = window.open('', '_blank', 'width=900,height=800');
+    win.document.write('<!DOCTYPE html><html><head><title>Preview - Compound Screw Jack Apparatus</title><meta charset="utf-8"></head><body style="font-family:Arial,sans-serif; padding:20px;">');
+    win.document.write(previewHtml);
+    win.document.write('</body></html>');
+    win.document.close();
+}
+
+// ---------- Submit Experiment ----------
+function submitExperiment() {
+    const form = document.getElementById('exp4-form');
+    const experiment_id = form.experiment_id.value.trim();
+    const employee_id = '123';
+
+    // Validation
+    if (!experiment_id) {
+        alert("Please enter Experiment No.");
+        return;
+    }
+    
+    if (!form.aim.value.trim() || !form.Procedure.value.trim() || 
+        !form.result.value.trim()) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    const apparatusList = Array.from(document.querySelectorAll("#apparatus-dropbox .tool-item"))
+        .map(el => el.textContent.trim());
+
+    if (apparatusList.length === 0) {
+        alert("Please add at least one apparatus.");
+        return;
+    }
+
+    // Prepare submission data
+    const submissionHtml = `
+<style>
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #000000;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    table, th, td {
+        border: 1px solid #000;
+    }
+    th, td {
+        padding: 8px 10px;
+        text-align: center;
+    }
+</style>
+<div class="header-row">
+    <div><b>Experiment No.:</b> ${escapeHtml(form.experiment_id.value || '')}</div>
+    <div><b>Date:</b> ${escapeHtml(form.expDate.value || '')}</div>
+</div>
+<h2 style="text-align:center; margin-top: 0;">COMPOUND SCREW JACK APPARATUS</h2>
+
+<p><b>Aim:</b> ${formatTextWithBreaks(form.aim.value || '')}</p>
+<p><b>Apparatus Used:</b> ${apparatusList.length ? escapeHtml(apparatusList.join(", ")) : '—'}</p>
+
+<h3>Procedure:</h3>
+<p>${formatTextWithBreaks(form.Procedure.value || '')}</p>
+
+<h3>Observation Table:</h3>
+<table border="1" cellspacing="0" cellpadding="5" style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Load (kg)</th>
+            <th>Effort (gms)</th>
+            <th>Distance measured by load (cm)</th>
+            <th>Distance measured by effort (cm)</th>
+            <th>MA</th>
+            <th>VR</th>
+            <th>Efficiency</th>
+        </tr>
+    </thead>
+    <tbody>
+        ${Array.from({length: 3}, (_, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td>${escapeHtml(form[`m${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`d${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`k${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`t${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_theo${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_act${i + 1}`]?.value || '')}</td>
+            <td>${escapeHtml(form[`f_act${i + 1}`]?.value || '')}</td>
+        </tr>
+        `).join('')}
+    </tbody>
+</table><br>
+<div style="font-family:Arial, sans-serif;   text-align: left;">
+     <h3 style="margin:0; color:#222;">Formulas:</h3>  
+        <p> Mechanical advantage = W/p </p>
+        <p> Velocity ratio = π(D + d)N / D </p>
+        <p> Mechanical efficiency = MA/VR (or) W * p / Ph (D + d)N </p> 
+
+<h3>Calculations:</h3>
+<p>${formatTextWithBreaks(form.calculations?.value || '')}</p>
+</div>
+
+<h3>Precautions:</h3>
+<p>${formatTextWithBreaks(form.Precautions.value || '')}</p>
+
+<h3>Result:</h3>
+<p>${formatTextWithBreaks(form.result.value || '')}</p>`;
+
+    const postData = new URLSearchParams();
+    postData.append('experiment_id', experiment_id);
+    postData.append('employee_id', employee_id);
+    postData.append('submission_data', submissionHtml);
+
+    fetch('../../submit_experiment.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: postData.toString()
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+        // Optional: redirect or clear form on success
+    })
+    .catch(err => {
+        alert('Error submitting experiment: ' + err.message);
+    });
+}
+  </script>
+</body>
+</html>

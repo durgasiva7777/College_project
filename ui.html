@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Lab Experiments</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+    color: var(--text-color);
+       overflow-x: hidden;
+
+    }
+
+header {
+    position: absolute;   /* keeps it over the cover image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background: transparent !important;  /* always transparent */
+    box-shadow: none;  /* remove any shadow */
+    border: none;      /* remove borders if any */
+    z-index: 1000;
+    color: white;
+}
+  
+    header img {
+        height: 50px;
+        position: fixed;
+    
+        top: 15px;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        margin-right: 6%;
+        gap: 50px;
+        padding: 10px;
+        top: 15px;
+        
+        
+        
+    }
+
+    nav a:not(.btn-ecap) {
+        position: relative;
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: medium;
+        transition: color 0.3s;
+         ;
+    }
+
+    nav a:not(.btn-ecap)::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    nav a:not(.btn-ecap):hover {
+        color: white;
+    }
+
+    nav a:not(.btn-ecap):hover::after {
+        width: 100%;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 340px 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                    url('images/mylib1.jpg') center/cover no-repeat;
+        color: white;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        color: #00C7E6;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: auto;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .hero button {
+        background-color: #00C7E6;
+        color: #000000;
+        padding: 13px 25px;
+        border: none;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .hero button.student {
+        background-color: #ececec;
+        color: #000000;
+        padding: 13px 25px;
+        border: none;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+        background-color: white;
+        color: #000000;
+    }
+
+
+    .logo {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+        color: #00C7E6;
+        font-size: 1.6em;
+        margin-right: auto;
+        position:fixed;
+        top: 15px;
+        left: 125px;
+        
+    }
+
+    .logo span {
+        display: block;
+        font-size: 0.6em;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: 'Poppins', sans-serif;
+    }
+  
+
+    .btn-ecap {
+        background-color: #00C7E6;
+        color: #000000!important;
+        padding: 9px 18px;
+        border-radius: 6px;
+        font-weight: bold!important;
+        font-size: 0.8em;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+        position: fixed;
+        top: 20px;
+        right: 40px;
+        
+    }
+
+    .btn-ecap:hover {
+        background-color: rgba(255, 255, 255, 0.85);
+        color: #002b5c;
+    }
+
+    /* Mobile Menu Button */
+   
+
+    /* Mobile Nav Dropdown */
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background-color: #002b5c;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 100%;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .mobile-nav a {
+        color: #ffd700;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .mobile-nav a:hover {
+        background-color: rgba(255, 215, 0, 0.15);
+    }
+    
+    .desktop-nav{
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        left: 540px;
+        top: 15px;
+        padding:  -5px;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+        .desktop-nav nav {
+      display: flex;
+      gap: 65px;
+      align-items: center;
+    
+      padding: 10px 20px;
+    }
+    .desktop-nav nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .desktop-nav nav a:hover {
+      color: #00C7E6;
+    }
+   
+@media (max-width: 480px) {
+    header {
+        
+        padding: 10px 15px;
+        
+        justify-content: space-between;
+        align-items: center;
+        background: transparent !important;
+    }
+
+    /* Group logo image + text */
+    .logo-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+    }
+
+    header img {
+        height: 40px;
+        width: auto;
+    }
+
+    .logo {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .logo span {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    /* Hide nav by default on mobile */
+    nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        position: absolute;
+        top: 60px; /* below header */
+        right: 10px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    nav a {
+        padding: 8px 0;
+        text-align: right;
+        color: white;
+    }
+
+    .menu-icon {
+        display: flex;
+        font-size: 1.8rem;
+        cursor: pointer;
+        margin-left: auto;
+    }
+    .hero{
+        width: 100%;
+        padding: 390px 20px;
+    }
+
+    .hero h1 {
+        
+        font-size: 1.6rem;
+        text-align: center;
+    
+    }
+
+    .hero p {
+        
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+
+
+
+    
+}
+
+
+
+ 
+</style>
+</head>
+<body>
+
+<header>
+
+ 
+
+        <img src="images/vasavi.png" alt="SVES Logo">
+        <h1 class="logo">
+            Sri Vasavi
+            <span>Engineering College</span>
+        </h1>
+       
+       <div class="desktop-nav">
+  <nav>
+    <a href="#"><i class="bi bi-house-door-fill"></i> Home</a>
+    <a href="#"><i class="bi bi-journal-text"></i> Experiments</a>
+    <a href="#"><i class="bi bi-building"></i> Labs</a>
+    <a href="#"><i class="bi bi-archive"></i> Resources</a>
+    <a href="#"><i class="bi bi-book"></i> Manuals</a>
+   <a href="https://sves.org.in/ecap/Default.aspx?ReturnUrl=%2fecap%2f" class="btn-ecap">E-CAP</a>
+
+  </nav>
+ 
+</div>
+    
+
+
+    <div class="mobile-nav" id="mobileMenu">
+        <a href="#">Home</a>
+        <a href="#">Experiments</a>
+        <a href="#">Labs</a>
+        <a href="#">Resources</a>
+        <a href=" class="btn-ecap">E-CAP</a>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Lab Experiments</h1>
+    <p>Access all your lab manuals, experiment guides, and resources in this portal</p><br>
+    <button onclick="window.location.href='index.html'">
+        <i class="bi bi-person-workspace"></i> Employee Login
+    </button>
+    <button class="student" onclick="window.location.href='studlogin.php'">
+        <i class="bi bi-mortarboard-fill"></i> Student Login
+    </button>
+</section>
+
+
+
+ <section class="section">
+        <h2>About College</h2><br>
+        <div class="underline"></div>
+
+        <p>
+            <span class="highlight">Sri Vasavi Engineering College</span> stands as a beacon of academic excellence and innovation in the field of engineering education. Nestled in a serene environment, the college is committed to nurturing future leaders who are equipped with both technical prowess and a strong ethical foundation, enabling them to address complex challenges and contribute meaningfully to societal advancement.
+        </p>
+
+        <p>
+            <span class="highlight">Sri Vasavi Engineering College</span> provides a conducive learning environment for students to explore, innovate, and excel. The institution's unwavering dedication to fostering a thriving, holistic development, coupled with a focus on research and industry collaboration, ensures that graduates are well-prepared to meet the challenges of the ever-evolving global landscape. As a hub of intellectual curiosity and cutting-edge technology, <span class="highlight">Sri Vasavi Engineering College</span> is poised to shape the future of engineering education and produce graduates who will make significant contributions to society.
+        </p>
+    </section>
+    <style>
+        body {
+            font-family: 'poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: white;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: auto;
+            padding: 50px 20px;
+            text-align: center;
+            
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #00C7E6; /* Dark red */
+            margin-bottom: 10px;
+           
+            
+        }
+        
+
+    
+
+        .section p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .highlight {
+            color: #00C7E6; /* Dark red */
+            font-weight: 600;
+        }
+    </style>
+<footer>
+    <div class="footer-container">
+        <div class="footer-about">
+            <img src="images/vasavi.png" alt="SVES Logo">
+            <h3>Sri Vasavi <span>Engineering College</span></h3>
+            <p>Empowering students with quality engineering education and fostering innovation for over two decades.</p>
+            <div class="social-icons">
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#">About Us</a>
+            <a href="#">Academics</a>
+            <a href="#">Admissions</a>
+            <a href="#">Placements</a>
+            <a href="#">R&D</a>
+        </div>
+        <div class="footer-links">
+            <h4>Departments</h4>
+            <a href="#">Computer Science</a>
+            <a href="#">Electronics & Comm.</a>
+            <a href="#">Mechanical</a>
+            <a href="#">Civil Engineering</a>
+            <a href="#">Electrical</a>
+        </div>
+        <div class="footer-contact">
+            <h4>Contact Info</h4>
+            <p>Pedatadepalli, Tadepalligudem,<br>West Godavari District,<br>Andhra Pradesh - 534101</p>
+        </div>
+    </div>
+<div class="footer-bottom">
+    <!-- Lab Matrix Logo Image -->
+    <div class="footer-logo">
+         <span class="matrix">A Mark by</span>
+        <a href="developers.html">
+           
+           <img src="images/image.png" alt="Lab Matrix Logo">
+        </a>
+    </div>
+
+ 
+       
+      
+       
+  
+
+    <p>© 2025 Sri Vasavi Engineering College. All Rights Reserved.</p>
+</div>
+
+
+
+</footer>
+
+<style>
+/* Footer Styles */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+   
+}
+
+
+ .matrix {
+    display: block;
+    font-size: 1.2em;
+    color: #96a0a2;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-bottom: -40px;
+    letter-spacing: 1px;
+    font-weight: medium;
+    text-align: center;
+    
+   
+}
+
+footer {
+    background-color: #7d7a7a25;
+    color: white;
+    padding: 40px 20px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 110px;
+    max-width: 1790px;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.footer-about {
+    flex: 1 1 250px;
+}
+
+.footer-about img {
+    height: 60px;
+    margin-bottom: -73px;
+    margin-left: -10px;
+}
+
+.footer-about h3 {
+    color: #00C7E6;
+    font-size: 1.3em;
+    margin-bottom: -20px;
+    margin-left: 80px;
+    margin-top: auto;
+    
+    
+}
+
+.footer-about h3 span {
+    display: flex;
+    font-size: 0.8em;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 40px;
+    
+    
+}
+
+.footer-about p {
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #00C7E6;
+    margin-right: 10px;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: white;
+}
+
+.footer-links {
+    flex: 1 1 150px;
+}
+
+.footer-links h4 {
+    margin-bottom: 10px;
+    color: #00C7E6;
+}
+
+.footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+
+.footer-links a:hover {
+    color:#00C7E6;
+}
+
+.footer-contact {
+    flex: 1 1 200px;
+}
+
+.footer-contact h4 {
+    color: #00C7E6;
+    margin-bottom: 10px;
+}
+
+.footer-contact p {
+    font-size: 0.9em;
+    line-height: 1.5;
+
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.footer-bottom p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 0; /* Remove right margin to fix small space */
+}
+
+.footer-logo img {
+    max-width: 230px;
+    margin-bottom: -60px;
+    transition: transform 0.3s ease;
+    margin-right: 0; /* Remove right margin to center the logo */
+}
+
+
+
+
+
+
+</style>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+</script>
+
+</body>
+</html>

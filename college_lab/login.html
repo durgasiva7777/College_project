@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Sri Vasavi Engineering College</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #e9e9e9;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header-container {
+      width: 100%;
+      background: #e9e9e9;
+      box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+      border-radius: 0 0 20px 20px;
+      padding: 18px;
+      display: flex;
+      justify-content: center;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      max-width: 900px;
+      width: 100%;
+    }
+    .college-logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 20px;
+      border-radius: 12px;
+      background: #e9e9e9;
+      box-shadow: 2px 2px 6px #d1d1d1, -2px -2px 6px #ffffff;
+      object-fit: cover;
+    }
+    .header-text .college-name {
+      font-weight: 600;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      color: #000;
+    }
+    .header-text .college-location {
+      font-size: 1rem;
+      color: #333;
+      opacity: 0.75;
+    }
+
+    /* Login Container */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px; /* Increased gap for better separation */
+      padding: 40px 10px 40px 10px;
+      width: 100%;
+      max-width: 950px;
+      margin-top: 45px;
+    }
+    @media (max-width: 800px) {
+      .login-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 25px 2vw;
+        margin-top: 25px;
+      }
+      .header-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    .login-card {
+      background: #e9e9e9;
+      padding: 32px 20px 20px 20px;
+      border-radius: 20px;
+      box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+      width: 380px;
+      min-height: 335px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+    @media (max-width: 420px) {
+      .login-card {
+        width: 98vw;
+        min-width: unset;
+        max-width: 100vw;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+    }
+
+    .login-card:hover {
+      box-shadow: 12px 12px 20px #d1d1d1, -12px -12px 20px #ffffff;
+      transform: translateY(-5px);
+    }
+
+    .login-card h2 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 1.58em;
+      font-weight: 600;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background: #e9e9e9;
+      box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+      transition: all 0.3s ease-in-out;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      box-shadow: inset 6px 6px 12px #d1d1d1, inset -6px -6px 12px #ffffff;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #e9e9e9;
+      color: #333;
+      border: none;
+      border-radius: 12px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 4px 4px 8px #d1d1d1, -4px -4px 8px #ffffff;
+      transition: all 0.3s ease-in-out;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .login-btn:hover {
+      box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+      transform: translateY(2px);
+    }
+
+    .forgot-password {
+      display: block;
+      margin-top: 6px;
+      color: #555;
+      text-decoration: none;
+      font-size: 0.93em;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <div class="header-container">
+    <div class="header-content">
+      <img src="college_logo.png" alt="Sri Vasavi Engineering College Logo" class="college-logo" />
+      <div class="header-text">
+        <div class="college-name">SRI VASAVI ENGINEERING COLLEGE (AUTONOMOUS)</div>
+        <div class="college-location">Pedatadepalli, Tadepalligudem - 534101, West Godavari District (AP)</div>
+      </div>
+    </div>
+  </div>
+  <!-- Login Container -->
+  <div class="login-container">
+    <!-- Student Login -->
+    <div class="login-card">
+      <h2>Student Login</h2>
+      <form action="login.php" method="POST">
+        <div class="input-group">
+          <label for="username">Roll Number</label>
+          <input type="text" id="username" name="username" placeholder="Enter Roll Number" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter Password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </form>
+    </div>
+    <!-- Employee Login -->
+    <div class="login-card">
+      <h2>Employee Login</h2>
+      <form action="employee_login.php" method="POST">
+        <div class="input-group">
+          <label for="empId">Employee ID</label>
+          <input type="text" id="empId" name="empId" placeholder="Enter Employee ID" required />
+        </div>
+        <div class="input-group">
+          <label for="empPass">Password</label>
+          <input type="password" id="empPass" name="empPass" placeholder="Enter Password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

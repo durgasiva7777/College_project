@@ -1,0 +1,249 @@
+body {
+  background: #e9e9e9;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+/* Header */
+.header-container {
+  width: 100%;
+  background: #e9e9e9;
+  box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+  border-radius: 0 0 20px 20px;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: 100%;
+}
+.college-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  border-radius: 12px;
+  background: #e9e9e9;
+  box-shadow: 2px 2px 6px #d1d1d1, -2px -2px 6px #ffffff;
+  object-fit: cover;
+}
+.header-text .college-name {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  color: #000;
+}
+.header-text .college-location {
+  font-size: 1rem;
+  color: #333;
+  opacity: 0.75;
+}
+/* Welcome Banner */
+
+/* Welcome Banner with Logout */
+.student-name-banner {
+    position: fixed;
+    top: 109px; /* Below header */
+    left: 0;
+    right: 0;
+    background: #e9e9e9;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 20px;
+    box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    height: 50px;
+    box-sizing: border-box;
+}
+.logout-btn {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #e9e9e9;
+    box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #ffffff;
+    transition: 0.2s;
+    font-size: 13px;
+}
+.logout-btn:hover {
+    box-shadow: inset 3px 3px 6px #d1d1d1, inset -3px -3px 6px #ffffff;
+}
+.container {
+  display: flex;
+  width: 100%;
+  margin-top: 146px; /* .header-container (about 78px) + .student-name-banner (about 60px) */
+}
+
+  .sidebar {
+    width: 220px;
+    background: #e9e9e9;
+    box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: fixed;
+    top: 170px;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 260px;
+}
+  .sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 12px;
+    background: #e9e9e9;
+    box-shadow: 4px 4px 8px #d1d1d1, -4px -4px 8px #ffffff;
+    transition: 0.2s;
+    text-align: center;
+  }
+  .sidebar a:hover {
+    box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+  }
+
+  .content h2 {
+    margin-bottom: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+
+.back-btn {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #333;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background: #e9e9e9;
+  box-shadow: 4px 4px 8px #d1d1d1, -4px -4px 8px #ffffff;
+  cursor: pointer;
+  transition: 0.2s;
+  width: fit-content;
+}
+.back-btn:hover {
+  box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+  background: #f4f4f4;
+}
+.experiment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.experiment-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.experiment-item {
+  flex: 1;
+  padding: 20px 30px;
+  background: #f2f2f2;
+  border-radius: 16px;
+  box-shadow: 8px 8px 15px #e9e9e9, -8px -8px 15px #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+}
+.start-btn {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f2f2f2;
+  box-shadow: 4px 4px 8px #e9e9e9, -4px -4px 8px #ffffff;
+  color: #333;
+  transition: 0.2s;
+}
+.start-btn:hover {
+  background: #e9e9e9;
+}
+.subject-card {
+  padding: 10px 20px;
+  background: #f2f2f2;
+  border-radius: 16px;
+  box-shadow: 8px 8px 15px #e9e9e9, -8px -8px 15px #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.subject-card:hover {
+  box-shadow: inset 4px 4px 8px #e9e9e9, inset -4px -4px 8px #ffffff;
+  background: #e9e9e9;
+}
+.student-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: 10px;
+  box-shadow: 2px 2px 6px #d1d1d1, -2px -2px 6px #ffffff;
+}
+.profile-card {
+  max-width: 600px;
+  margin: auto;
+  background: #e9e9e9;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff;
+}
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.profile-item {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #444;
+}
+.profile-item span {
+  font-weight: 600;
+  color: #000;
+}
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .content { padding: 25px 8px 25px 0; }
+  .sidebar { width: 190px; }
+  .content { margin-left: 205px; }
+}
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    border-radius: 0;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: none;
+    margin-bottom: 10px;
+  }
+  .content { margin-left: 0; padding: 14px 6px; }
+}
